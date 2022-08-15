@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
     if (Platform.isIOS) {
       return CupertinoApp(
         debugShowCheckedModeBanner: false,
-        title: 'PDF Scanner',
+        title: 'Test Task',
         theme: const CupertinoThemeData(
           primaryColor: Colors.blue,
         ),
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
     } else {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'PDF Scanner',
+        title: 'Test Task',
         theme: ThemeData(primaryColor: Colors.blue),
         onGenerateRoute: appRouter.onGeneratedRoute,
         initialRoute: SplashScreen.routeName,

@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       body: Container(
-          color: Colors.blue,
+          color: Colors.deepPurple,
           height: size.height,
           width: size.width,
           child: const Center(
