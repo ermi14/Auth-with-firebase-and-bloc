@@ -1,5 +1,9 @@
-class AuthDataSource {
-  AuthDataSource authDataSource = AuthDataSource();
+import '../data_sources/auth_data_source.dart';
+
+class AuthRepository { 
+  final AuthDataSource authDataSource;
+
+  AuthRepository({required this.authDataSource});
 
   Future<void> signInWithEmail({
     required String email,
