@@ -44,7 +44,6 @@ dev_dependencies:
   shared_preferences: ^2.0.15
   firebase_core: ^1.20.1
   firebase_auth: ^3.6.3
-  cloud_firestore: ^3.4.4
   
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
