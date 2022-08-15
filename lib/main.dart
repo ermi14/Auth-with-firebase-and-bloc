@@ -17,7 +17,7 @@ void main() async {
   /// Initialize firebase
   await Firebase.initializeApp();
 
-  /// Initialize dependecy injection using get_it
+  /// Initialize dependency injection using get_it
   await serviceLocatorInit();
 
   BlocOverrides.runZoned(
