@@ -9,8 +9,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository authRepository;
   
   LoginBloc({required this.authRepository}) : super(LoginInitial()) {
-    on<LoginEvent>((event, emit) {
-      // TODO: implement event handler
+    on<LoginEvent>((event, emit) async {
+      if(event is UserLoginEvent) {
+        emit(LoginLoading());
+        final result = await authRepository.signInWithEmail(email: event.email, password: event.password);
+      }
     });
   }
 }

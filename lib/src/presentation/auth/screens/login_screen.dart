@@ -12,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,9 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.grey[100],
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(12)),
-                      child: const TextField(
+                      child: TextField(
+                        controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: InputBorder.none, hintText: "Email"),
                       ),
                     ),
@@ -79,9 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.grey[100],
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(12)),
-                      child: const TextField(
+                      child: TextField(
+                        controller: passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: InputBorder.none, hintText: "Password"),
                       ),
                     ),
@@ -164,5 +169,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }
