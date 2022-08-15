@@ -8,6 +8,7 @@ import 'package:test_task/src/presentation/splash/splash_screen.dart';
 import 'package:test_task/src/router.dart';
 import 'src/core/utils/bloc_observer.dart';
 import 'src/di/injector.dart';
+import 'src/presentation/auth/blocs/forgot_password/forgot_password_bloc.dart';
 import 'src/presentation/auth/blocs/login/login_bloc.dart';
 import 'src/presentation/auth/blocs/signup/signup_bloc.dart';
 
@@ -28,6 +29,9 @@ void main() async {
               ),
               BlocProvider(
                 create: (context) => SignupBloc(authRepository: sl()),
+              ),
+              BlocProvider(
+                create: (context) => ForgotPasswordBloc(authRepository: sl()),
               ),
             ],
             child: MyApp(),

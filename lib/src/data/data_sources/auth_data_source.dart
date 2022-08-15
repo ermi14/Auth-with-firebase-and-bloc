@@ -5,10 +5,6 @@ class AuthDataSource {
 
   AuthDataSource({required this.firebaseAuth});
 
-  User? get currentUser => firebaseAuth.currentUser;
-
-  Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
-
   Future<void> signInWithEmail(
       {required String email, required String password}) async {
     try {
@@ -19,7 +15,11 @@ class AuthDataSource {
         throw Exception('No user found for this email.');
       } else if (e.code == 'wrong-password') {
         throw Exception('Wrong password provided for that user.');
+      } else {
+        throw Exception(e.code);
       }
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 
@@ -32,7 +32,9 @@ class AuthDataSource {
       if (e.code == 'weak-password') {
         throw Exception('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        throw Exception('The account already exists for that email.');
+        throw Exception('An account already exists for that email.');
+      } else {
+        throw Exception(e.code);
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -53,6 +55,8 @@ class AuthDataSource {
         throw Exception('No user found for this email.');
       } else if (e.code == 'invalid-action-code') {
         throw Exception('The code you provided is invalid.');
+      } else {
+        throw Exception(e.code);
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -67,6 +71,8 @@ class AuthDataSource {
         throw Exception('No user found for this email.');
       } else if (e.code == 'user-not-found') {
         throw Exception('No user found for this email.');
+      } else {
+        throw Exception(e.code);
       }
     } catch (e) {
       throw Exception(e.toString());

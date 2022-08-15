@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:test_task/src/data/data_sources/auth_data_source.dart';
 
 import '../data/repositories/auth_repository.dart';
+import '../presentation/auth/blocs/forgot_password/forgot_password_bloc.dart';
 import '../presentation/auth/blocs/login/login_bloc.dart';
 import '../presentation/auth/blocs/signup/signup_bloc.dart';
 
@@ -14,6 +15,7 @@ Future<void> serviceLocatorInit() async {
   /// Blocs
   sl.registerLazySingleton(() => LoginBloc(authRepository: sl()));
   sl.registerLazySingleton(() => SignupBloc(authRepository: sl()));
+  sl.registerLazySingleton(() => ForgotPasswordBloc(authRepository: sl()));
 
   /// Repositories
   sl.registerLazySingleton<AuthRepository>(

@@ -16,7 +16,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       if (event is UserSignupEvent) {
         emit(SignupLoading());
         try {
-          await authRepository.signInWithEmail(
+          await authRepository.signUpWithEmail(
               email: event.email, password: event.password);
           await prefs.setBool("isLoggedIn", true);
           emit(SignupSuccess());

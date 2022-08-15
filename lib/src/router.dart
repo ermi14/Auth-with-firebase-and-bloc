@@ -6,8 +6,6 @@ import 'package:test_task/src/presentation/auth/screens/signup_screen.dart';
 import 'package:test_task/src/presentation/home/home_screen.dart';
 import 'package:test_task/src/presentation/splash/splash_screen.dart';
 
-import 'presentation/auth/screens/reset_password_screen.dart';
-
 class AppRouter {
   MaterialPageRoute? onGeneratedRoute(RouteSettings routeSettings) {
     final args = routeSettings.arguments;
@@ -21,8 +19,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SignupScreen());
       case ForgotPasswordScreen.routeName:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
-      case ResetPasswordScreen.routeName:
-        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
@@ -42,8 +38,6 @@ class AppRouter {
         return CupertinoPageRoute(builder: (_) => const SignupScreen());
       case ForgotPasswordScreen.routeName:
         return CupertinoPageRoute(builder: (_) => const ForgotPasswordScreen());
-      case ResetPasswordScreen.routeName:
-        return CupertinoPageRoute(builder: (_) => const ResetPasswordScreen());
       case HomeScreen.routeName:
         return CupertinoPageRoute(builder: (_) => const HomeScreen());
       default:

@@ -1,30 +1,49 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/material.dart';
+import 'package:test_task/src/data/repositories/auth_repository.dart';
+import 'package:test_task/src/presentation/auth/screens/login_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../di/injector.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static const String routeName = "/home_screen";
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-          color: Colors.deepPurple,
-          height: size.height,
-          width: size.width,
-          child: Center(
-              child: InkWell(
-                onTap: () {
-                  /// TODO: write logout logic here
-                },
-                child: const Text("Logout",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold)),
-              ))),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Welome to your home page",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+                child: InkWell(
+              onTap: () async {
+                await sl<AuthRepository>().signOut();
+                if (!mounted) return;
+                Navigator.pushReplacementNamed(
+                    context, LoginScreen.routeName);
+              },
+              child: const Text("Logout",
+                  style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)),
+            )),
+          ],
+        ),
+      ),
     );
   }
 }

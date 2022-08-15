@@ -1,4 +1,5 @@
 import '../data_sources/auth_data_source.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepository {
   final AuthDataSource authDataSource;
@@ -41,8 +42,10 @@ class AuthRepository {
   }
 
   Future<void> signOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       await authDataSource.signOut();
+      await prefs.setBool("isLoggedIn", false);
     } catch (e) {
       throw Exception(e.toString());
     }
