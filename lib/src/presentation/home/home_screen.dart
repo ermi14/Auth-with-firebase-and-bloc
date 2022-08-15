@@ -7,8 +7,24 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Home screen")),
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: Container(
+          color: Colors.deepPurple,
+          height: size.height,
+          width: size.width,
+          child: Center(
+              child: InkWell(
+                onTap: () {
+                  /// TODO: write logout logic here
+                },
+                child: const Text("Logout",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+              ))),
     );
   }
 }
