@@ -41,28 +41,6 @@ class AuthDataSource {
     }
   }
 
-  Future<void> resetPassword(
-      {required String code, required String newPassword}) async {
-    try {
-      await firebaseAuth.confirmPasswordReset(
-          code: code, newPassword: newPassword);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        throw Exception('The password provided is too weak.');
-      } else if (e.code == 'expired-action-code') {
-        throw Exception('The code you provided is expired.');
-      } else if (e.code == 'user-not-found') {
-        throw Exception('No user found for this email.');
-      } else if (e.code == 'invalid-action-code') {
-        throw Exception('The code you provided is invalid.');
-      } else {
-        throw Exception(e.code);
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
   Future<void> forgotPassword({required String email}) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);

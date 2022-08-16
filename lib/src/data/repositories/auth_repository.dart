@@ -24,15 +24,6 @@ class AuthRepository {
     }
   }
 
-  Future<void> resetPassword(
-      {required String code, required String newPassword}) async {
-    try {
-      await authDataSource.resetPassword(code: code, newPassword: newPassword);
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
   Future<void> forgotPassword({required String email}) async {
     try {
       await authDataSource.forgotPassword(email: email);
