@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test_task/src/core/utils/network_exception.dart';
 
 class AuthDataSource {
   final FirebaseAuth firebaseAuth;
@@ -12,14 +13,14 @@ class AuthDataSource {
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw Exception('No user found for this email.');
+        throw NetworkException('No user found for this email.');
       } else if (e.code == 'wrong-password') {
-        throw Exception('Wrong password provided for that user.');
+        throw NetworkException('Wrong password provided for that user.');
       } else {
-        throw Exception(e.code);
+        throw NetworkException(e.code);
       }
     } catch (e) {
-      throw Exception(e.toString());
+      throw NetworkException(e.toString());
     }
   }
 
@@ -30,14 +31,14 @@ class AuthDataSource {
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw Exception('The password provided is too weak.');
+        throw NetworkException('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        throw Exception('An account already exists for that email.');
+        throw NetworkException('An account already exists for that email.');
       } else {
-        throw Exception(e.code);
+        throw NetworkException(e.code);
       }
     } catch (e) {
-      throw Exception(e.toString());
+      throw NetworkException(e.toString());
     }
   }
 
@@ -46,14 +47,14 @@ class AuthDataSource {
       await firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'auth/user-not-found') {
-        throw Exception('No user found for this email.');
+        throw NetworkException('No user found for this email.');
       } else if (e.code == 'user-not-found') {
-        throw Exception('No user found for this email.');
+        throw NetworkException('No user found for this email.');
       } else {
-        throw Exception(e.code);
+        throw NetworkException(e.code);
       }
     } catch (e) {
-      throw Exception(e.toString());
+      throw NetworkException(e.toString());
     }
   }
 
@@ -61,7 +62,7 @@ class AuthDataSource {
     try {
       await firebaseAuth.signOut();
     } catch (e) {
-      throw Exception(e.toString());
+      throw NetworkException(e.toString());
     }
   }
 }

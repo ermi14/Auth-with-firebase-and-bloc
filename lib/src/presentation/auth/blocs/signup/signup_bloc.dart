@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:equatable/equatable.dart';
+import 'package:test_task/src/core/utils/network_exception.dart';
 import '../../../../data/repositories/auth_repository.dart';
 
 part 'signup_event.dart';
@@ -20,7 +21,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
               email: event.email, password: event.password);
           await prefs.setBool("isLoggedIn", true);
           emit(SignupSuccess());
-        } catch (e) {
+        }on NetworkException catch(e) {
+          emit(SignupError(message: e.message));
+        }  catch (e) {
           emit(SignupError(message: e.toString()));
         }
       }

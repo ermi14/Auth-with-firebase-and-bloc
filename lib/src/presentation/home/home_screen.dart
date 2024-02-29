@@ -1,4 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/material.dart';
 import 'package:test_task/src/data/repositories/auth_repository.dart';
 import 'package:test_task/src/presentation/auth/screens/login_screen.dart';
@@ -16,14 +15,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Welome to your home page",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Text(
+              "Welcome to your home page",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -32,14 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () async {
                 await sl<AuthRepository>().signOut();
                 if (!mounted) return;
-                Navigator.pushReplacementNamed(
-                    context, LoginScreen.routeName);
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
               },
-              child: const Text("Logout",
-                  style: TextStyle(
-                      color: Colors.deepPurple,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
+              child: const Text(
+                "Logout",
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             )),
           ],
         ),

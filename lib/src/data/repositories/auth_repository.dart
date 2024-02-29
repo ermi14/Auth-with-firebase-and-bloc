@@ -1,3 +1,5 @@
+import 'package:test_task/src/core/utils/network_exception.dart';
+
 import '../data_sources/auth_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,6 +12,8 @@ class AuthRepository {
       {required String email, required String password}) async {
     try {
       await authDataSource.signInWithEmail(email: email, password: password);
+    } on NetworkException catch(e) {
+      throw NetworkException(e.message);
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -19,6 +23,8 @@ class AuthRepository {
       {required String email, required String password}) async {
     try {
       await authDataSource.signUpWithEmail(email: email, password: password);
+    } on NetworkException catch(e) {
+      throw NetworkException(e.message);
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -27,6 +33,8 @@ class AuthRepository {
   Future<void> forgotPassword({required String email}) async {
     try {
       await authDataSource.forgotPassword(email: email);
+    } on NetworkException catch(e) {
+      throw NetworkException(e.message);
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -37,6 +45,8 @@ class AuthRepository {
     try {
       await authDataSource.signOut();
       await prefs.setBool("isLoggedIn", false);
+    } on NetworkException catch(e) {
+      throw NetworkException(e.message);
     } catch (e) {
       throw Exception(e.toString());
     }
